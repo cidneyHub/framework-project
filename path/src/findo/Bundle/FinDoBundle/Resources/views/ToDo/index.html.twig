@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FindoFinDoBundle:ToDo:index{% endblock %}
+
+{% block body %}
+<h1>FinDo: index page</h1>
+
+<div class="item-create">
+    <form action="{{ path('index') }}" method="post" {#{ form_enctype(form) }#} >
+        {{ form(form) }}
+        <div><button type="submit">neu</button></div>
+    </form>
+</div>
+    {% if items|length > 0 %}
+        <ul>
+            {% for item in items %}
+                <li id="item-finished" {{ item.id }}>
+                    {% if not item.finished %}
+                        <a class="ajax-item-finished" href="{{ path('finished', {'id': item.id}) }}">
+                        X</a>{% else %}O{% endif %}
+
+                    {{ item.text }}
+                    <a href="{{ path('edit', {'id': item.id}) }}">bearbeiten</a>
+                    <a href="{{ path('delete', {'id': item.id}) }}">löschen</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,4 @@
+findo_fin_do:
+    resource: "@FindoFinDoBundle/Controller/"
+    type:     annotation
+    prefix:   /
